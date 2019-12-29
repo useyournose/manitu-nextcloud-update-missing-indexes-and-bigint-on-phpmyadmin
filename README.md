@@ -14,8 +14,8 @@ Keep in mind that "nc_4366_" seems to be a prefix, and would be different for yo
 
 **mysql alternative:**
 
-`ALTER TABLE ``nc_4366_share`` ADD UNIQUE ``owner_index`` (``id``, ``uid_owner``) USING BTREE;`  
-`ALTER TABLE ``nc_4366_share`` ADD UNIQUE ``initiator_index`` (``id``, ``uid_initiator``) USING BTREE;`
+``ALTER TABLE `nc_4366_share` ADD UNIQUE `owner_index` (`id`, `uid_owner`) USING BTREE;``  
+``ALTER TABLE `nc_4366_share` ADD UNIQUE `initiator_index` (`id`, `uid_initiator`) USING BTREE;``
 
 ## 2. column data type
 set the server to maintenance mode:
