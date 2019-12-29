@@ -18,7 +18,7 @@ Keep in mind that "nc_4366_" seems to be a prefix, and would be different for yo
 ``ALTER TABLE `nc_4366_share` ADD UNIQUE `initiator_index` (`id`, `uid_initiator`) USING BTREE;``
 
 ## 2. column data type
-set the server to maintenance mode:
+1. set the server to maintenance mode:
 https://docs.nextcloud.com/server/9.0/admin_manual/maintenance/enable_maintenance.html
 
 **regular command:**
@@ -34,6 +34,7 @@ and upload it again to enable maintenance mode.
 
 validate it by browsing on your nextcloud instance.
 
+2. perform the changes
 **regular command:**
 
 `sudo -u www-data php occ db:convert-filecache-bigint`
@@ -43,6 +44,7 @@ validate it by browsing on your nextcloud instance.
 `alter table nc_4366_filecache MODIFY COLUMN mtime BIGINT(8);`  
 `alter table nc_4366_filecache MODIFY COLUMN storage_mtime BIGINT(8);`
 
+3. reset maintenance mode
 **regular command:**
 
 `sudo -u www-data php occ maintenance:mode --off`
@@ -54,3 +56,5 @@ change `maintenance = false,` and upload again.
 https://www.manitu.de/service/faq/entry/1288/Wie-kann-ich-den-Wartungsmodus-meiner-Nextcloud-ownCloud-beenden/
 validate it by browsing on your nextcloud instance.
 
+
+et voilá, done.
