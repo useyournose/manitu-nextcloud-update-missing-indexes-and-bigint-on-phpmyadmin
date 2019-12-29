@@ -1,6 +1,6 @@
 # manitu - nextcloud update, missing indexes and bigint on phpmyadmin
 
-![error.jpg](error.jpg)
+![error.jpg](./error.JPG)
 
 if you know the message before a nextcloud update, telling you, that indexes are missing and columns are int not bigint, here's how to solve it, with no access to a shell or cronjobs.
 You could also put https://apps.nextcloud.com/apps/occweb on your instance, but it wouldn't work when the instance is in maintenance mode.
