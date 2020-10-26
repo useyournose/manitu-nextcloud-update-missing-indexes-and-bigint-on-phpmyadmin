@@ -5,7 +5,7 @@
 if you know the message before a nextcloud update, telling you, that indexes are missing and columns are int not bigint, here's how to solve it, with no access to a shell or cronjobs.
 You could also put https://apps.nextcloud.com/apps/occweb on your instance, but it wouldn't work when the instance is in maintenance mode.
 
-Keep in mind that "nc_4366_" seems to be a prefix, and would be different for your installation.
+Keep in mind that "nc_4366_" is just a prefix, and would be different for your installation.
 
 ## 1. Indexes
 **regular command:**
@@ -58,3 +58,20 @@ validate it by browsing on your nextcloud instance.
 
 
 et voilá, done.
+
+##Where to find the details:
+Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php
+Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingColumns.php
+
+##Update 17.10 to 18.10
+-Missing column
+`ALTER TABLE nc_4366_flow_operations add column entity character varying(256) not null;`
+- Missing Indexes
+`ALTER TABLE `nc_4366_calendarobjects_props` ADD UNIQUE `calendarobject_calid_index` (`id`, `calendartype`) USING BTREE;`
+`ALTER TABLE `nc_4366_schedulingobjects` ADD UNIQUE `schedulobj_principuri_index` (`principaluri`) USING BTREE;`
+
+##Update 18.10 to 19.04
+- Missing column
+`ALTER TABLE `nc_4366_comments` add column reference_id varchar(64) NULL`
+-Missing Indexes
+`CREATE INDEX `properties_path_index` ON nc_4366_properties (`userid`, `propertypath`);`
