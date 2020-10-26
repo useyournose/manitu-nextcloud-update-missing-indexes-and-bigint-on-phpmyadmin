@@ -66,18 +66,25 @@ Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db
 
 ## Update 16.0.4 to 17.10
 - Missing Indexes:
-CREATE INDEX `twofactor_providers_uid` ON `nc_4366_twofactor_providers` (`uid`);
-ALTER TABLE `nc_4366_whats_new` ADD UNIQUE `version` (`version`) USING BTREE;
+
+`CREATE INDEX `twofactor_providers_uid` ON `nc_4366_twofactor_providers` (`uid`);`
+`ALTER TABLE `nc_4366_whats_new` ADD UNIQUE `version` (`version`) USING BTREE;`
 
 ## Update 17.10 to 18.10
-- Missing column
+- Missing column:
+
 `ALTER TABLE nc_4366_flow_operations add column entity character varying(256) not null;`
-- Missing Indexes
+
+- Missing Indexes:
+
 `CREATE INDEX `calendarobject_calid_index` ON `nc_4366_calendarobjects_props` (`id`, `calendartype`);`
 `CREATE INDEX `schedulobj_principuri_index` ON `nc_4366_schedulingobjects` (`principaluri`);`
 
 ## Update 18.10 to 19.04
 - Missing column
+
 `ALTER TABLE `nc_4366_comments` add column reference_id varchar(64) NULL`
+
 - Missing Indexes
+
 `CREATE INDEX `properties_path_index` ON nc_4366_properties (`userid`, `propertypath`);`
