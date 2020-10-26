@@ -64,12 +64,17 @@ et voilá, done.
 Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php
 Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingColumns.php
 
+## Update 16.0.4 to 17.10
+- Missing Indexes:
+CREATE INDEX `twofactor_providers_uid` ON `nc_4366_twofactor_providers` (`uid`);
+ALTER TABLE `nc_4366_whats_new` ADD UNIQUE `version` (`version`) USING BTREE;
+
 ## Update 17.10 to 18.10
 - Missing column
 `ALTER TABLE nc_4366_flow_operations add column entity character varying(256) not null;`
 - Missing Indexes
-`ALTER TABLE `nc_4366_calendarobjects_props` ADD UNIQUE `calendarobject_calid_index` (`id`, `calendartype`) USING BTREE;`
-`ALTER TABLE `nc_4366_schedulingobjects` ADD UNIQUE `schedulobj_principuri_index` (`principaluri`) USING BTREE;`
+`CREATE INDEX `calendarobject_calid_index` ON `nc_4366_calendarobjects_props` (`id`, `calendartype`);`
+`CREATE INDEX `schedulobj_principuri_index` ON `nc_4366_schedulingobjects` (`principaluri`);`
 
 ## Update 18.10 to 19.04
 - Missing column
