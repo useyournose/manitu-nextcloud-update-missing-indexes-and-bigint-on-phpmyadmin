@@ -59,19 +59,20 @@ validate it by browsing on your nextcloud instance.
 
 et voilá, done.
 
-##Where to find the details:
+# P.S.
+## Where to find the details:
 Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php
 Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingColumns.php
 
-##Update 17.10 to 18.10
--Missing column
+## Update 17.10 to 18.10
+- Missing column
 `ALTER TABLE nc_4366_flow_operations add column entity character varying(256) not null;`
 - Missing Indexes
 `ALTER TABLE `nc_4366_calendarobjects_props` ADD UNIQUE `calendarobject_calid_index` (`id`, `calendartype`) USING BTREE;`
 `ALTER TABLE `nc_4366_schedulingobjects` ADD UNIQUE `schedulobj_principuri_index` (`principaluri`) USING BTREE;`
 
-##Update 18.10 to 19.04
+## Update 18.10 to 19.04
 - Missing column
 `ALTER TABLE `nc_4366_comments` add column reference_id varchar(64) NULL`
--Missing Indexes
+- Missing Indexes
 `CREATE INDEX `properties_path_index` ON nc_4366_properties (`userid`, `propertypath`);`
