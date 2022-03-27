@@ -92,8 +92,8 @@ Missing Primary Keys: https://github.com/nextcloud/server/blob/master/core/Comma
 
 ## Update 19.04 to 23.xx
 
-- default Phone region
-https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+- default Phone region  
+https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements  
 add ``'default_phone_region' => 'DE'`` to the config.php file.
 
 - Missing Primary Key  
