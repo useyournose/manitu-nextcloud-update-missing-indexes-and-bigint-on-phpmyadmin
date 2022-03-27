@@ -96,32 +96,22 @@ Missing Primary Keys: https://github.com/nextcloud/server/blob/master/core/Comma
 https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
 add ``'default_phone_region' => 'DE'`` to the config.php file.
 
-- Missing Primary Key
-Fehlender Primärschlüssel auf Tabelle "nc_4366_federated_reshares".
+- Missing Primary Key  
 ``ALTER TABLE nc_4366_federated_reshares ADD CONSTRAINT federated_res_pk PRIMARY KEY (share_id);``  
-Fehlender Primärschlüssel auf Tabelle "nc_4366_systemtag_object_mapping".
 ``ALTER TABLE nc_4366_systemtag_object_mapping ADD CONSTRAINT som_pk PRIMARY KEY (objecttype, objectid, systemtagid);``  
-Fehlender Primärschlüssel auf Tabelle "nc_4366_comments_read_markers".
 ``ALTER TABLE nc_4366_comments_read_markers ADD CONSTRAINT crm_pk PRIMARY KEY (user_id,object_type,object_id);``  
-Fehlender Primärschlüssel auf Tabelle "nc_4366_collres_resources".
 ``ALTER TABLE nc_4366_collres_resources ADD CONSTRAINT crr_pk PRIMARY KEY (collection_id, resource_type, resource_id);``  
-Fehlender Primärschlüssel auf Tabelle "nc_4366_collres_accesscache".
 ``ALTER TABLE nc_4366_collres_accesscache ADD CONSTRAINT cra_pk PRIMARY KEY (user_id,collection_id,resource_type,resource_id);``  
-Fehlender Primärschlüssel auf Tabelle "nc_4366_filecache_extended".
 ``ALTER TABLE nc_4366_filecache_extended ADD CONSTRAINT fce_pk PRIMARY KEY (fileid);``  
 
-- convert to bigint
+- convert to bigint  
 ``alter table nc_4366_federated_reshares MODIFY COLUMN share_id BIGINT(8);``  
 ``alter table nc_4366_filecache_extended MODIFY COLUMN fileid BIGINT(8);``  
 ``alter table nc_4366_share_external MODIFY COLUMN id BIGINT(8);``  
 ``alter table nc_4366_share_external MODIFY COLUMN parent BIGINT(8);``  
 
-- Missing Indexes
-Fehlender Index "fs_size" in der Tabelle "nc_4366_filecache".
+- Missing Indexes  
 ``CREATE INDEX `fs_size` ON `nc_4366_filecache` (`size`);``  
-Fehlender Index "fs_id_storage_size" in der Tabelle "nc_4366_filecache".
 ``CREATE INDEX `fs_id_storage_size` ON `nc_4366_filecache` (`fileid`, `storage`, `size`);``  
-Fehlender Index "fs_storage_path_prefix" in der Tabelle "nc_4366_filecache".
 ``CREATE INDEX `fs_storage_path_prefix` ON `nc_4366_filecache` (`storage`, `path`(64));``  
-Fehlender Index "cards_abiduri" in der Tabelle "nc_4366_cards".
 ``CREATE INDEX `cards_abiduri` ON `nc_4366_cards` (`addressbookid`, `uri`);``  
