@@ -61,13 +61,14 @@ et voilá, done.
 
 # P.S.
 ## Where to find the details:
-Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php
+Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php  
 Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingColumns.php
+Missing Primary Keys: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingPrimaryKeys.php
 
 ## Update 16.0.4 to 17.10
 - Missing Indexes:
 
-``CREATE INDEX `twofactor_providers_uid` ON `nc_4366_twofactor_providers` (`uid`);``
+``CREATE INDEX `twofactor_providers_uid` ON `nc_4366_twofactor_providers` (`uid`);``  
 ``ALTER TABLE `nc_4366_whats_new` ADD UNIQUE `version` (`version`) USING BTREE;``
 
 ## Update 17.10 to 18.10
@@ -77,7 +78,7 @@ Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db
 
 - Missing Indexes:
 
-``CREATE INDEX `calendarobject_calid_index` ON `nc_4366_calendarobjects_props` (`id`, `calendartype`);``
+``CREATE INDEX `calendarobject_calid_index` ON `nc_4366_calendarobjects_props` (`id`, `calendartype`);``  
 ``CREATE INDEX `schedulobj_principuri_index` ON `nc_4366_schedulingobjects` (`principaluri`);``
 
 ## Update 18.10 to 19.04
@@ -88,3 +89,39 @@ Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db
 - Missing Indexes
 
 ``CREATE INDEX `properties_path_index` ON nc_4366_properties (`userid`, `propertypath`);``
+
+## Update 19.04 to 23.xx
+
+- default Phone region
+https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+add ``'default_phone_region' => 'DE'`` to the config.php file.
+
+- Missing Primary Key
+Fehlender Primärschlüssel auf Tabelle "nc_4366_federated_reshares".
+``ALTER TABLE nc_4366_federated_reshares ADD CONSTRAINT federated_res_pk PRIMARY KEY (share_id);``  
+Fehlender Primärschlüssel auf Tabelle "nc_4366_systemtag_object_mapping".
+``ALTER TABLE nc_4366_systemtag_object_mapping ADD CONSTRAINT som_pk PRIMARY KEY (objecttype, objectid, systemtagid);``  
+Fehlender Primärschlüssel auf Tabelle "nc_4366_comments_read_markers".
+``ALTER TABLE nc_4366_comments_read_markers ADD CONSTRAINT crm_pk PRIMARY KEY (user_id,object_type,object_id);``  
+Fehlender Primärschlüssel auf Tabelle "nc_4366_collres_resources".
+``ALTER TABLE nc_4366_collres_resources ADD CONSTRAINT crr_pk PRIMARY KEY (collection_id, resource_type, resource_id);``  
+Fehlender Primärschlüssel auf Tabelle "nc_4366_collres_accesscache".
+``ALTER TABLE nc_4366_collres_accesscache ADD CONSTRAINT cra_pk PRIMARY KEY (user_id,collection_id,resource_type,resource_id);``  
+Fehlender Primärschlüssel auf Tabelle "nc_4366_filecache_extended".
+``ALTER TABLE nc_4366_filecache_extended ADD CONSTRAINT fce_pk PRIMARY KEY (fileid);``  
+
+- convert to bigint
+``alter table nc_4366_federated_reshares MODIFY COLUMN share_id BIGINT(8);``  
+``alter table nc_4366_filecache_extended MODIFY COLUMN fileid BIGINT(8);``  
+``alter table nc_4366_share_external MODIFY COLUMN id BIGINT(8);``  
+``alter table nc_4366_share_external MODIFY COLUMN parent BIGINT(8);``  
+
+- Missing Indexes
+Fehlender Index "fs_size" in der Tabelle "nc_4366_filecache".
+``CREATE INDEX `fs_size` ON `nc_4366_filecache` (`size`);``  
+Fehlender Index "fs_id_storage_size" in der Tabelle "nc_4366_filecache".
+``CREATE INDEX `fs_id_storage_size` ON `nc_4366_filecache` (`fileid`, `storage`, `size`);``  
+Fehlender Index "fs_storage_path_prefix" in der Tabelle "nc_4366_filecache".
+``CREATE INDEX `fs_storage_path_prefix` ON `nc_4366_filecache` (`storage`, `path`(64));``  
+Fehlender Index "cards_abiduri" in der Tabelle "nc_4366_cards".
+``CREATE INDEX `cards_abiduri` ON `nc_4366_cards` (`addressbookid`, `uri`);``  
