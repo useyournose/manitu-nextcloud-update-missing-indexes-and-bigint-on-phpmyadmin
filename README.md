@@ -120,5 +120,5 @@ add ``'default_phone_region' => 'DE'`` to the config.php file.
 
 - Missing Indexes   
 ``CREATE INDEX `properties_pathonly_index` ON `nc_4366_properties` (`propertypath`);``  
-``CREATE INDEX `job_lastcheck_reserve` ON `nc_4366_jobs` (`last_checked`, `reserved_at`);``  
+``CREATE INDEX `job_lastcheck_reserved` ON `nc_4366_jobs` (`last_checked`, `reserved_at`);``  
 
