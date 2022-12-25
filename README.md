@@ -116,9 +116,14 @@ add ``'default_phone_region' => 'DE'`` to the config.php file.
 ``CREATE INDEX `fs_storage_path_prefix` ON `nc_4366_filecache` (`storage`, `path`(64));``  
 ``CREATE INDEX `cards_abiduri` ON `nc_4366_cards` (`addressbookid`, `uri`);``  
 
-## Update 23.00 to 23.12
+## Update 23.0.0 to 23.0.12
 
 - Missing Indexes   
 ``CREATE INDEX `properties_pathonly_index` ON `nc_4366_properties` (`propertypath`);``  
 ``CREATE INDEX `job_lastcheck_reserved` ON `nc_4366_jobs` (`last_checked`, `reserved_at`);``  
+
+## Update 23.12 to 24.0.8
+
+- Missing Indexes   
+``CREATE INDEX `direct_edit_timestamp` ON `nc_4366_direct_edit` (`timestamp`);``  
 
