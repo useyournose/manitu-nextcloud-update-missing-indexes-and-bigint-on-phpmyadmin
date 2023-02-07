@@ -127,3 +127,11 @@ add ``'default_phone_region' => 'DE'`` to the config.php file.
 - Missing Indexes   
 ``CREATE INDEX `direct_edit_timestamp` ON `nc_4366_direct_edit` (`timestamp`);``  
 
+## Update 24.0.9 to 25.0.3
+
+- Missing Indexes  
+``CREATE INDEX `preferences_app_key` ON `nc_4366_preferences` (`appid`, `configkey`);`` 
+
+- convert to bigint  
+``ALTER TABLE nc_4366_files_trash MODIFY COLUMN auto_id BIGINT(8);``  
+
