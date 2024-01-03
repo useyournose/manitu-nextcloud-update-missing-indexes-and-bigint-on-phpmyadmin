@@ -61,9 +61,14 @@ et voilá, done.
 
 # P.S.
 ## Where to find the details:
+Old:
+
 Missing Indexes: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingIndices.php  
 Missing Columns: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingColumns.php
 Missing Primary Keys: https://github.com/nextcloud/server/blob/master/core/Command/Db/AddMissingPrimaryKeys.php
+
+New:
+https://github.com/nextcloud/server/tree/master/core/Migrations
 
 ## Update 16.0.4 to 17.10
 - Missing Indexes:
@@ -131,6 +136,21 @@ add ``'default_phone_region' => 'DE'`` to the config.php file.
 
 - Missing Indexes  
 ``CREATE INDEX `preferences_app_key` ON `nc_4366_preferences` (`appid`, `configkey`);`` 
+
+- convert to bigint  
+``ALTER TABLE nc_4366_files_trash MODIFY COLUMN auto_id BIGINT(8);``  
+
+## Update 24.0.8 to 24.0.12
+
+- Missing Indexes  
+``CREATE INDEX `fs_parent` ON `nc_4366_filecache` (`parent`);``
+
+## Update 24.0.12 to 25.0.13
+
+- Missing Indexes  
+``CREATE INDEX `preferences_app_key` ON `nc_4366_preferences` (`appid`, `configkey`);``  
+``CREATE INDEX `mounts_user_root_path_index` ON `nc_4366_mounts` (`user_id`, `root_id`, `mount_point`(128));`` from https://github.com/nextcloud/server/blob/a64df1908bb10b103ce98235ff21d0087d6978d7/core/Application.php#L243C4-L243C4  
+``CREATE INDEX `systag_by_tagid` ON `nc_4366_systemtag_object_mapping` (`systemtagid`, `objecttype`);`` from https://github.com/nextcloud/server/blob/a64df1908bb10b103ce98235ff21d0087d6978d7/core/Application.php#L250C4-L250C4  
 
 - convert to bigint  
 ``ALTER TABLE nc_4366_files_trash MODIFY COLUMN auto_id BIGINT(8);``  
