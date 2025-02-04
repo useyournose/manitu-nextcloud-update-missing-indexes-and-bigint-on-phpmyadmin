@@ -207,7 +207,7 @@ no changes
 ``CREATE INDEX `schedulobj_lastmodified_idx` ON `nc_4366_schedulingobjects` (`lastmodified`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/core/Application.php#L174  
 ``CREATE INDEX `systag_by_objectid` ON `nc_4366_systemtag_object_mapping` (`objectid`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/core/Application.php#L233  
 
-- Missing Maintenance Window
+- Missing Maintenance Window  
 ``'maintenance_window_start' => 1,`` to the `config/config.php` file  
 
 - Not addressed
@@ -215,3 +215,20 @@ no changes
   - mime-type migrations
   - `opcache.interned_strings_buffer` > 8: setting not available
 
+### Update from 28.0.14 to 29.0.11
+
+- Missing optional indizes  
+``CREATE INDEX `dav_shares_resourceid_type` ON `nc_4366_dav_shares` (`resourceid`, `type`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/apps/dav/lib/Listener/AddMissingIndicesListener.php#L23  
+``CREATE INDEX `dav_shares_resourceid_access` ON `nc_4366_dav_shares` (`resourceid`, `access`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/apps/dav/lib/Listener/AddMissingIndicesListener.php#L28
+
+- Not Addressed  
+missing optional Index "oc_npushhash_di" intable  "notifications_pushhash".
+
+### Update from 29.0.11 to 30.0.5
+
+- Missing optional index
+``CREATE INDEX `fs_name_hash` ON `nc_4366_filecache` (`name`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/core/Application.php#L104
+
+- Not Addressed
+  - outdated database
+  - outdated php
