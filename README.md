@@ -201,3 +201,17 @@ no changes
 
 no changes
 
+### Update from 28.0.1 to 28.0.14
+
+- Missing optional indices  
+``CREATE INDEX `schedulobj_lastmodified_idx` ON `nc_4366_schedulingobjects` (`lastmodified`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/core/Application.php#L174  
+``CREATE INDEX `systag_by_objectid` ON `nc_4366_systemtag_object_mapping` (`objectid`);`` from https://github.com/nextcloud/server/blob/9223794d49c8b8b34ae28876b298b17d4fad025b/core/Application.php#L233  
+
+- Missing Maintenance Window
+``'maintenance_window_start' => 1,`` to the `config/config.php` file  
+
+- Not addressed
+  - php memory limit below 512 MB recommendation: Hard capped in the manitu setting
+  - mime-type migrations
+  - `opcache.interned_strings_buffer` > 8: setting not available
+
